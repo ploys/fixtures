@@ -81,6 +81,20 @@ describe('fixtures', () => {
   test('commit', () => {
     const user = fixtures.user({ id: 1, name: 'github' })
     const repo = fixtures.repository({ id: 1, name: 'hello', owner: user })
+    const config = fixtures.config({
+      ref: 'master',
+      path: '.github/my-config.yml',
+      data: { key: 'val' },
+      repository: repo,
+    })
+
+    expect(config).toMatchObject({ name: 'my-config.yml', path: '.github/my-config.yml' })
+    expect(fixtures.decode(config.content!)).toMatchObject({ key: 'val' })
+  })
+
+  test('config', () => {
+    const user = fixtures.user({ id: 1, name: 'github' })
+    const repo = fixtures.repository({ id: 1, name: 'hello', owner: user })
     const commit = fixtures.commit({ repository: repo, committer: user })
 
     expect(commit).toMatchObject({ committer: user, author: user })
