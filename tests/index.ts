@@ -16,6 +16,42 @@ describe('fixtures', () => {
     expect(app).toMatchObject({ id: 1, name: 'Hello world', slug: 'hello-world' })
   })
 
+  test('check-run', () => {
+    const user = fixtures.user({ id: 1, name: 'github' })
+    const repo = fixtures.repository({ id: 1, name: 'hello', owner: user })
+    const commit = fixtures.commit({ repository: repo, committer: user })
+    const app = fixtures.application({
+      id: 1,
+      name: 'Hello world',
+      owner: user,
+      permissions: {
+        metadata: 'read',
+      },
+      events: ['push'],
+    })
+    const checkSuite = fixtures.checkSuite({
+      id: 1,
+      status: 'completed',
+      conclusion: 'success',
+      commit,
+      application: app,
+      repository: repo,
+      branch: 'custom',
+    })
+    const checkRun = fixtures.checkRun({
+      id: 1,
+      name: 'test',
+      repository: repo,
+      suite: checkSuite,
+      output: { title: 'Test', summary: 'Testing' },
+      status: 'completed',
+      conclusion: 'success',
+      external: 'other',
+    })
+
+    expect(checkRun).toMatchObject({ id: 1, status: 'completed', conclusion: 'success' })
+  })
+
   test('check-suite', () => {
     const user = fixtures.user({ id: 1, name: 'github' })
     const repo = fixtures.repository({ id: 1, name: 'hello', owner: user })

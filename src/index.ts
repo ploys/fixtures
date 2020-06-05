@@ -1,5 +1,6 @@
 export { application, Application } from './types/application'
 export { commit, Commit } from './types/commit'
+export { checkRun, CheckRun } from './types/check-run'
 export { checkSuite, CheckSuite } from './types/check-suite'
 export { installation, Installation } from './types/installation'
 export { organization, Organization } from './types/organization'
