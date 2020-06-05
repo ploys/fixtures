@@ -151,4 +151,12 @@ describe('fixtures', () => {
 
     expect(user).toMatchObject({ id: 1, login: 'github' })
   })
+
+  test('private-key', async () => {
+    const key = await fixtures.privateKey()
+
+    expect(typeof key).toBe('string')
+    expect(key).toMatch('-----BEGIN PRIVATE KEY-----')
+    expect(key).toMatch('-----END PRIVATE KEY-----')
+  })
 })
