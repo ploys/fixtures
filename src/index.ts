@@ -9,4 +9,6 @@ export { repository, Repository } from './types/repository'
 export { token, Token } from './types/token'
 export { user, User } from './types/user'
 
+export { push, Push } from './payloads/push'
+
 export { privateKey, privateKeySync } from './other/private-key'

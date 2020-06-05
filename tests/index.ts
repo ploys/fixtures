@@ -152,6 +152,25 @@ describe('fixtures', () => {
     expect(user).toMatchObject({ id: 1, login: 'github' })
   })
 
+  test('push', () => {
+    const owner = fixtures.organization({ id: 1, name: 'github' })
+    const repo = fixtures.repository({ id: 1, name: 'hello', owner })
+    const app = fixtures.application({
+      id: 1,
+      name: 'Hello world',
+      owner,
+      permissions: {
+        metadata: 'read',
+      },
+      events: ['push'],
+    })
+    const commit = fixtures.commit({ repository: repo, committer: owner })
+    const inst = fixtures.installation({ id: 1, application: app, account: owner })
+    const push = fixtures.push({ branch: 'master', commit, repository: repo, installation: inst })
+
+    expect(push).toMatchObject({ ref: 'refs/heads/master' })
+  })
+
   test('private-key', async () => {
     const key = await fixtures.privateKey()
 
