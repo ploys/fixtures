@@ -16,6 +16,14 @@ describe('fixtures', () => {
     expect(app).toMatchObject({ id: 1, name: 'Hello world', slug: 'hello-world' })
   })
 
+  test('commit', () => {
+    const user = fixtures.user({ id: 1, name: 'github' })
+    const repo = fixtures.repository({ id: 1, name: 'hello', owner: user })
+    const commit = fixtures.commit({ repository: repo, committer: user })
+
+    expect(commit).toMatchObject({ committer: user, author: user })
+  })
+
   test('installation', () => {
     const owner = fixtures.user({ id: 1, name: 'github' })
     const app = fixtures.application({
