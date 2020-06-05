@@ -159,4 +159,12 @@ describe('fixtures', () => {
     expect(key).toMatch('-----BEGIN PRIVATE KEY-----')
     expect(key).toMatch('-----END PRIVATE KEY-----')
   })
+
+  test('private-key-sync', () => {
+    const key = fixtures.privateKeySync()
+
+    expect(typeof key).toBe('string')
+    expect(key).toMatch('-----BEGIN PRIVATE KEY-----')
+    expect(key).toMatch('-----END PRIVATE KEY-----')
+  })
 })

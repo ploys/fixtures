@@ -9,4 +9,4 @@ export { repository, Repository } from './types/repository'
 export { token, Token } from './types/token'
 export { user, User } from './types/user'
 
-export { privateKey } from './other/private-key'
+export { privateKey, privateKeySync } from './other/private-key'

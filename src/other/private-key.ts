@@ -16,3 +16,18 @@ export function privateKey(): Promise<string> {
     crypto.generateKeyPair('rsa', options, (_, __, key) => resolve(key))
   })
 }
+
+/**
+ * Creates a new private key.
+ *
+ * @returns The private key.
+ */
+export function privateKeySync(): string {
+  const res = crypto.generateKeyPairSync('rsa', {
+    modulusLength: 2048,
+    publicKeyEncoding: { type: 'spki', format: 'pem' },
+    privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+  })
+
+  return res.privateKey
+}
