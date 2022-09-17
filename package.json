@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "js-yaml": "^3.14.0",
-    "moment": "^2.26.0"
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@octokit/rest": "^17.10.0",
